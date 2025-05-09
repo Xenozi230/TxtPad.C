@@ -19,4 +19,5 @@
 
 ## Compile command : 
 
+```bash
 gcc main.c -o TxtPad
