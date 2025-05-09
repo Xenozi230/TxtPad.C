@@ -13,10 +13,10 @@
 - Delete a task 
 - Save tasks
 
-### Requirements : 
+## Requirements : 
 
 - GCC 
 
-### Compile command : 
+## Compile command : 
 
 gcc main.c -o TxtPad
