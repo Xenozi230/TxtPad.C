@@ -13,6 +13,23 @@ typedef struct Task {
 Task tasks[100];
 int taskCount = 0;
 
+void loadTasks() {
+    FILE *file = fopen("tasks.dat", "rb");
+    if(file != NULL) {
+        fread(&taskCount, sizeof(int), 1, file);
+        fread(tasks, sizeof(Task), taskCount, file);
+        fclose(file);
+    }
+}
+void saveTasks() {
+    FILE *file = fopen("tasks.dat", "wb");
+    if (file != NULL) {
+        fwrite(&taskCount, sizeof(int), 1, file);
+        fwrite(tasks, sizeof(Task), taskCount, file);
+        fclose(file);
+    }
+}
+
 void addTask() {
     Task newTask; 
     newTask.id = taskCount + 1; 
@@ -29,6 +46,7 @@ void addTask() {
     tasks[taskCount] = newTask;
     taskCount++;
 
+    saveTasks();
     printf("Task added successfully!\n");
 }
 
@@ -55,6 +73,7 @@ void viewTasks() {
 }
 
 int main() {
+    loadTasks();
     int choice; 
 
     while (1) {
